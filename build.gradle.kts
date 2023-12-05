@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
 }
 buildscript {
     repositories {
@@ -10,6 +11,7 @@ buildscript {
     dependencies {
         addClassPath(AppDependencies.buildClassPath)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
+        classpath ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
     }
 }
 

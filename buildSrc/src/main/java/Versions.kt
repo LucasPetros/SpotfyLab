@@ -1,7 +1,7 @@
 //version constants for the Kotlin DSL dependencies
 object Versions {
     // App level
-    const val gradle = "7.4.0"
+    const val gradle = "7.4.1"
     const val kotlin = "1.8.0"
 
     // Core
@@ -9,7 +9,7 @@ object Versions {
     const val appcompat = "1.6.1"
 
     // Glide
-    const val glide = "4.13.0"
+    const val glide = "5.0.0-rc01"
 
     // Hilt
     const val hilt = "2.48"
@@ -28,7 +28,7 @@ object Versions {
 
     // UI
     const val constraintLayout = "2.1.4"
-    const val material = "1.6.1"
+    const val material = "1.8.0"
     const val cardView = "1.0.0"
     const val recyclerVersion = "1.2.1"
     const val activityKtxVersion = "1.6.1"

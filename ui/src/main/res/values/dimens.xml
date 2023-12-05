@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin -->
+    <dimen name="margin_huge">16dp</dimen>
+    <dimen name="margin_normal">8dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_huge">16dp</dimen>
+
+    <!-- Icon -->
+    <dimen name="icon_small">24dp</dimen>
+    <dimen name="icon_large">56dp</dimen>
+    <dimen name="icon_huge">144dp</dimen>
+
+    <!-- Corner -->
+    <dimen name="corner_normal">4dp</dimen>
+
+
+</resources>
