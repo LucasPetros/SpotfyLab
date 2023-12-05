@@ -5,7 +5,8 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object AppDependencies {
 
     private const val buildToolsClassPath = "com.android.tools.build:gradle:${Versions.gradle}"
-    private const val gradlePluginClassPath = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    private const val gradlePluginClassPath =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     private const val navigationSafeArgsClassPath =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
     private const val hiltAndroidClassPath =
@@ -20,20 +21,23 @@ object AppDependencies {
 
     // Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:ksp:${Versions.glide}"
 
     // Hilt
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
     // Lifecycle
-    const val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionVersion}"
+    const val lifecycleExtension =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionVersion}"
     const val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$livedataVersion"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelVersion"
+    const val lifecycleViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelVersion"
 
     //Coroutines
-    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersions}"
+    const val coroutinesCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersions}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersions}"
 
@@ -49,6 +53,10 @@ object AppDependencies {
     const val gson = "com.google.code.gson:gson:2.8.9"
     private const val okhttp = "com.squareup.okhttp3:okhttp:4.9.2"
     private const val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.2"
+
+    // Ksp
+    const val kspLibrary =
+        "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-Beta1-1.0.15"
 
     // UI
     private const val constraintLayout =
