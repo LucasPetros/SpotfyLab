@@ -1,23 +1,27 @@
 package com.lucas.petros.spotfylab.features.login.data.remote.service
 
 import com.lucas.petros.commons.data.Constants.TOKEN_REFRESH
-import com.lucas.petros.spotfylab.BuildConfig
+import com.lucas.petros.network.SPOTIFY_AUTH_URL
 import com.lucas.petros.spotfylab.BuildConfig.CLIENT_ID
 import com.lucas.petros.spotfylab.BuildConfig.SECRET_ID
 import com.lucas.petros.spotfylab.features.login.data.Constants.REDIRECT_URI
 import com.lucas.petros.spotfylab.features.login.data.remote.dto.AccessTokenDto
+import com.lucas.petros.spotfylab.features.login.data.remote.dto.UserProfileDto
 import okhttp3.Credentials
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 
 interface LoginApi {
 
     @FormUrlEncoded
-    @POST("api/token")
+    @POST
     suspend fun getAccessToken(
+        @Url url:String = SPOTIFY_AUTH_URL,
         @Header("Authorization") auth: String = Credentials.basic(
             CLIENT_ID,
             SECRET_ID
@@ -29,8 +33,9 @@ interface LoginApi {
     ): AccessTokenDto
 
     @FormUrlEncoded
-    @POST("api/token")
+    @POST
     suspend fun getRefreshToken(
+        @Url url:String = SPOTIFY_AUTH_URL,
         @Header("Authorization") auth: String = Credentials.basic(
             CLIENT_ID,
             SECRET_ID
@@ -40,4 +45,9 @@ interface LoginApi {
         @Field("grant_type") grantType: String = TOKEN_REFRESH,
         @Field("client_id") clientId: String = CLIENT_ID
     ): AccessTokenDto
+
+    @GET("v1/me")
+    suspend fun getUserProfile(
+        @Header("Authorization") auth: String,
+    ): UserProfileDto
 }

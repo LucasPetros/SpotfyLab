@@ -48,8 +48,9 @@ class LoginFragment : BaseFragmentVDB<FragmentLoginBinding>(R.layout.fragment_lo
         vm.stateToken.observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 saveTokens(data.accessToken, data.tokenRefresh)
-                navigateToHomeScreen()
                 requireActivity().finish()
+                navigateToHomeScreen()
+
             }
         }
     }

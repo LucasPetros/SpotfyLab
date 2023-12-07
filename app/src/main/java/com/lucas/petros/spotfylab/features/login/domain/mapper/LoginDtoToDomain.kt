@@ -9,5 +9,4 @@ fun AccessTokenDto.toDomain() = AccessToken(
     tokenType = tokenType.handleOpt(),
     expiresIn = expiresIn,
     tokenRefresh = tokenRefresh.handleOpt()
-
 )

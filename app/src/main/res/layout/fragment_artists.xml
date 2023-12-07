@@ -35,7 +35,8 @@
             android:layout_height="@dimen/icon_normal"
             android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_huge"
-            android:src="@color/white"
+            loadUrlImage="@{vm.image}"
+            isCircle="@{true}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -8,6 +8,7 @@ import com.lucas.petros.commons.data.remote.dto.FollowersDto
 import com.lucas.petros.commons.data.remote.dto.ImageDto
 
 data class UserProfile(
+    val id: String,
     val displayName: String,
     val imageUrl: String,
 )

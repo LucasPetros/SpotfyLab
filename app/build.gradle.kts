@@ -64,6 +64,7 @@ dependencies {
     implementation(AppDependencies.coreLibraries)
     implementation(AppDependencies.hiltAndroid)
     kapt(AppDependencies.hiltCompiler)
+    kapt(AppDependencies.roomCompiler)
     implementation(AppDependencies.lifecycleLibraries)
     implementation(AppDependencies.navigationLibraries)
     implementation(AppDependencies.uiLibraries)
@@ -71,6 +72,7 @@ dependencies {
     implementation(AppDependencies.retrofit)
     implementation(AppDependencies.gson)
     implementation(AppDependencies.cardView)
+    implementation(AppDependencies.roomLibraries)
 
     testImplementation(AppDependencies.unitTestLibraries)
 
