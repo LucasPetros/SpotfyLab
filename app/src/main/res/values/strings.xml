@@ -1,4 +1,20 @@
 <resources>
-    <string name="app_name">SpotfyLab</string>
+    <string name="app_name" translatable="false">SpotfyLab</string>
 
+    <!-- Login screen -->
+    <string name="btn_login" translatable="false">Entrar</string>
+    <string name="title_login" translatable="false">Entre com sua conta Spotify</string>
+    <string name="error_request_auth" translatable="false">Não foi possivel obter autorização</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <!-- nav bottom home -->
+    <string name="artists_menu" translatable="false">Artistas</string>
+    <string name="playlists_menu" translatable="false">Playlists</string>
+    <string name="profile_menu" translatable="false">Perfil</string>
+
+    <!-- commons -->
+    <string name="loading" translatable="false">Carregando...</string>
+    <string name="top_artists" translatable="false">Top artistas</string>
 </resources>

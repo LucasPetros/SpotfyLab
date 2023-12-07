@@ -23,6 +23,10 @@ object AppDependencies {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:ksp:${Versions.glide}"
 
+    // WebView
+
+    const val webview = "androidx.webkit:webkit:${Versions.webview}"
+
     // Hilt
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
@@ -66,6 +70,8 @@ object AppDependencies {
     const val androidKtxActivity = "androidx.activity:activity-ktx:${Versions.activityKtxVersion}"
     const val androidKtxFragment = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
     const val androidRecyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerVersion}"
+    const val androidPaging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+
 
     // Unit test
     private const val junit = "junit:junit:${Versions.junit}"
@@ -118,6 +124,8 @@ object AppDependencies {
         add(androidKtxFragment)
         add(cardView)
         add(androidRecyclerView)
+        add(webview)
+        add(androidPaging)
     }
 
     val unitTestLibraries = arrayListOf<String>().apply {
@@ -136,9 +144,9 @@ fun DependencyHandler.addClassPath(list: List<String>) {
     }
 }
 
-fun DependencyHandler.ksp(list: List<String>) {
+fun DependencyHandler.kapt(list: List<String>) {
     list.forEach { dependency ->
-        add("ksp", dependency)
+        add("kapt", dependency)
     }
 }
 

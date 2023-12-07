@@ -10,9 +10,6 @@ class SpotfyLabApplication : Application() {
     companion object {
         private lateinit var instance: Application
 
-        fun getAppContext(): Context {
-            return instance.applicationContext
-        }
     }
 
     override fun onCreate() {

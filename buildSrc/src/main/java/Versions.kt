@@ -10,6 +10,7 @@ object Versions {
 
     // Glide
     const val glide = "5.0.0-rc01"
+    const val webview = "1.6.0"
 
     // Hilt
     const val hilt = "2.48"
@@ -33,6 +34,7 @@ object Versions {
     const val recyclerVersion = "1.2.1"
     const val activityKtxVersion = "1.6.1"
     const val fragmentKtxVersion = "1.5.4"
+    const val paging = "3.1.1"
 
     // Unit test
     const val junit = "4.13.2"

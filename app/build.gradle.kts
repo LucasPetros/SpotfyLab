@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
@@ -18,14 +18,13 @@ android {
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
 
-        manifestPlaceholders["redirectSchemeName"] = "spotify-sdk"
-        manifestPlaceholders["redirectHostName"] = "auth"
-
         testInstrumentationRunner = AppConfig.customInstrumentedRunner
 
     }
 
-
+    hilt {
+        enableAggregatingTask = true
+    }
 
     buildTypes {
         getByName(AppConfig.release) {
@@ -51,7 +50,6 @@ android {
     }
 
 
-
 }
 
 secrets {
@@ -62,13 +60,10 @@ dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.network))
     implementation(project(Modules.ui))
-    implementation("com.spotify.android:auth:2.1.0")
-    implementation("androidx.browser:browser:1.4.0")
 
     implementation(AppDependencies.coreLibraries)
     implementation(AppDependencies.hiltAndroid)
-    implementation(AppDependencies.kspLibrary)
-    ksp(AppDependencies.hiltCompiler)
+    kapt(AppDependencies.hiltCompiler)
     implementation(AppDependencies.lifecycleLibraries)
     implementation(AppDependencies.navigationLibraries)
     implementation(AppDependencies.uiLibraries)
