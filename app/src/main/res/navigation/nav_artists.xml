@@ -8,5 +8,26 @@
     <fragment
         android:id="@+id/artistsFragment"
         android:name="com.lucas.petros.spotfylab.features.artists.presentation.list.ArtistsFragment"
-        android:label="nav_artists" />
+        android:label="nav_artists" >
+        <action
+            android:id="@+id/to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsFragment"
+        android:label="ArtistDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
 </navigation>

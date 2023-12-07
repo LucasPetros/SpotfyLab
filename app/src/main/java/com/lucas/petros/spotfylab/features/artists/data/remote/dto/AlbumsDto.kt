@@ -1,12 +1,12 @@
 package com.lucas.petros.spotfylab.features.artists.data.remote.dto
 
 
-data class ArtistsDto(
+data class AlbumsDto(
     val href: String,
-    val items: List<ArtistDto>,
+    val items: List<AlbumDto>,
     val limit: Int,
-    val next: Any,
+    val next: String,
     val offset: Int,
-    val previous: Any,
+    val previous: String,
     val total: Int
 )

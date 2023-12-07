@@ -1,5 +1,7 @@
 package com.lucas.petros.spotfylab.features.login.data.remote.service
 
+import com.lucas.petros.commons.data.Constants.TOKEN_REFRESH
+import com.lucas.petros.spotfylab.BuildConfig
 import com.lucas.petros.spotfylab.BuildConfig.CLIENT_ID
 import com.lucas.petros.spotfylab.BuildConfig.SECRET_ID
 import com.lucas.petros.spotfylab.features.login.data.Constants.REDIRECT_URI
@@ -24,5 +26,18 @@ interface LoginApi {
         @Field("code") code: String?,
         @Field("redirect_uri") redirectUri: String = REDIRECT_URI,
         @Field("grant_type") grantType: String? = "authorization_code"
+    ): AccessTokenDto
+
+    @FormUrlEncoded
+    @POST("api/token")
+    suspend fun getRefreshToken(
+        @Header("Authorization") auth: String = Credentials.basic(
+            CLIENT_ID,
+            SECRET_ID
+        ),
+        @Header("Content-Type") content: String = "application/x-www-form-urlencoded",
+        @Field("refresh_token") refreshToken: String,
+        @Field("grant_type") grantType: String = TOKEN_REFRESH,
+        @Field("client_id") clientId: String = CLIENT_ID
     ): AccessTokenDto
 }

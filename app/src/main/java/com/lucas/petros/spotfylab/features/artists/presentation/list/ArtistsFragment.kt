@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.lucas.petros.commons.base.BaseFragmentVDB
+import com.lucas.petros.commons.extension.handleOpt
 import com.lucas.petros.spotfylab.R
 import com.lucas.petros.spotfylab.databinding.FragmentArtistsBinding
 import com.lucas.petros.spotfylab.features.artists.presentation.list.adapter.ArtistsAdapter
@@ -28,6 +30,7 @@ class ArtistsFragment : BaseFragmentVDB<FragmentArtistsBinding>(R.layout.fragmen
 
     override fun setupObservers() {
         observerArtistsPaging()
+        observerNewToken()
     }
 
     private fun observerArtistsPaging() {
@@ -43,9 +46,21 @@ class ArtistsFragment : BaseFragmentVDB<FragmentArtistsBinding>(R.layout.fragmen
         }
     }
 
+    private fun observerNewToken() {
+        vm.stateToken.observe(viewLifecycleOwner) { tokenData ->
+            if (tokenData.data?.accessToken?.isNotBlank() == true || tokenData.error.isNotBlank()) {
+                vm.getArtists()
+            }
+        }
+    }
+
     private fun setupAdapter() {
         artistsAdapter = ArtistsAdapter() { artist ->
-            artist?.id
+            val direction = ArtistsFragmentDirections.toArtistDetailFragment()
+            direction.id = artist?.id.handleOpt()
+            direction.imageUrl = artist?.imageUrl.handleOpt()
+            direction.name = artist?.name.handleOpt()
+            findNavController().navigate(direction)
         }
     }
 

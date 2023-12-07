@@ -29,7 +29,7 @@
     <!-- text -->
     <dimen name="text_title">16sp</dimen>
     <dimen name="text_normal">14sp</dimen>
-    <dimen name="text_small">8sp</dimen>
+    <dimen name="text_small">12sp</dimen>
 
 
 </resources>
