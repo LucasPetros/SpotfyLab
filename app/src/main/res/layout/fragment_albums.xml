@@ -4,52 +4,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="vm"
-            type="com.lucas.petros.spotfylab.features.artists.presentation.list.ArtistsViewModel" />
-
+<variable
+    name="vm"
+    type="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.artists.presentation.list.ArtistsFragment">
+        android:paddingHorizontal="@dimen/margin_huge"
+        android:paddingTop="@dimen/margin_normal"
+        tools:context=".features.artists.presentation.detail_list.AlbumsFragment">
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_huge"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_left"
+            android:padding="6dp"
+            android:onClick="@{() -> vm.navigateBackClick()}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNameArtist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvNameArtist" />
+
+        <TextView
+            android:id="@+id/tvNameArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_normal"
-            android:text="@string/top_artists"
+            android:text="@{vm.args.name}"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="@dimen/text_title"
+            android:layout_marginStart="@dimen/margin_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ivAlbum"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivAlbum"
-            android:layout_width="@dimen/icon_normal"
-            android:layout_height="@dimen/icon_normal"
+            android:layout_width="@dimen/icon_huge"
+            android:layout_height="@dimen/icon_huge"
             android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_huge"
-            android:src="@color/white"
+            loadUrlImage="@{vm.args.imageUrl}"
+            isCircle="@{true}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvArtists"
+            android:id="@+id/rvAlbums"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_extra_large"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="@dimen/margin_extra_huge"
             android:layout_marginBottom="?actionBarSize"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
         <com.lucas.petros.ui.UILoading
             android:id="@+id/uil_login"

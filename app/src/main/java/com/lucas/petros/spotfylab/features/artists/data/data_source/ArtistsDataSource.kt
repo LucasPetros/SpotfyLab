@@ -1,4 +1,4 @@
-package com.lucas.petros.spotfylab.features.artists.data
+package com.lucas.petros.spotfylab.features.artists.data.data_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
