@@ -4,7 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -42,7 +42,9 @@ dependencies {
     implementation(AppDependencies.coreLibraries)
     implementation(AppDependencies.uiLibraries)
     implementation(AppDependencies.lifecycleLibraries)
-    ksp(AppDependencies.lifecycleCompiler)
+    implementation(AppDependencies.hiltAndroid)
+    kapt(AppDependencies.hiltCompiler)
+    kapt(AppDependencies.lifecycleCompiler)
     implementation(AppDependencies.glide)
-    ksp(AppDependencies.glideCompiler)
+    kapt(AppDependencies.glideCompiler)
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/artists"
+    android:label="nav_artists"
+    app:startDestination="@id/artistsFragment">
+
+    <fragment
+        android:id="@+id/artistsFragment"
+        android:name="com.lucas.petros.spotfylab.features.artists.presentation.list.ArtistsFragment"
+        android:label="nav_artists" />
+</navigation>

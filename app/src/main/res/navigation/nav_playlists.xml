@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/playlists"
+    android:label="nav_playlists"
+    app:startDestination="@id/playlistsFragment">
+
+    <fragment
+        android:id="@+id/playlistsFragment"
+        android:name="com.lucas.petros.spotfylab.features.playlists.presentation.PlaylistsFragment"
+        android:label="nav_playlists" />
+</navigation>
