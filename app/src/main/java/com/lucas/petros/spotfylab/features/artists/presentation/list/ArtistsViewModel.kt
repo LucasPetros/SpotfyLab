@@ -2,6 +2,7 @@ package com.lucas.petros.spotfylab.features.artists.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -12,31 +13,37 @@ import com.lucas.petros.commons.data.Constants.TOKEN_REFRESH
 import com.lucas.petros.commons.data.DataResource
 import com.lucas.petros.commons.extension.handleOpt
 import com.lucas.petros.commons.utils.SecureTokenManager
+import com.lucas.petros.commons.utils.resultResource
 import com.lucas.petros.spotfylab.features.artists.domain.model.Artist
 import com.lucas.petros.spotfylab.features.artists.domain.use_case.GetArtistsTopUser
 import com.lucas.petros.spotfylab.features.login.domain.model.AccessToken
+import com.lucas.petros.spotfylab.features.login.domain.model.UserProfile
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetRefreshToken
+import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 import javax.inject.Inject
 
 @HiltViewModel
 class ArtistsViewModel @Inject constructor(
     private val useCase: GetArtistsTopUser,
     private val getNewToken: GetRefreshToken,
+    private val getProfile: GetUserProfile,
     private val secureToken: SecureTokenManager,
 ) : BaseViewModel() {
 
     val pagingList = MutableLiveData<Flow<PagingData<Artist>>>()
 
     val stateToken = MutableLiveData<BaseState<AccessToken>>()
+    private val stateUserProfile = MutableLiveData<BaseState<UserProfile>>()
+    val image = stateUserProfile.map { it.data?.imageUrl }
 
     init {
         getNewToken()
+        getProfile()
     }
 
     fun getArtists() {
@@ -44,6 +51,12 @@ class ArtistsViewModel @Inject constructor(
             pagingList.value = useCase.execute(secureToken.getToken(ACCESS_TOKEN).handleOpt())
                 .cachedIn(viewModelScope)
         }
+    }
+
+    private fun getProfile(){
+        getProfile.invoke(secureToken.getToken(ACCESS_TOKEN).handleOpt()).onEach { result ->
+            resultResource(result,stateUserProfile)
+        }.launchIn(viewModelScope)
     }
 
     private fun getNewToken() {

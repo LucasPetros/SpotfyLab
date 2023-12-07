@@ -2,6 +2,7 @@ package com.lucas.petros.spotfylab.features.artists.data.remote.service
 
 import com.lucas.petros.spotfylab.features.artists.data.remote.dto.AlbumsDto
 import com.lucas.petros.spotfylab.features.artists.data.remote.dto.ArtistsDto
+import com.lucas.petros.spotfylab.features.login.data.remote.dto.UserProfileDto
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -23,7 +24,6 @@ interface ArtistsApi {
         @Query("offset") page: Int,
         @Query("limit") limit: Int
     ): AlbumsDto
-
 }
 
 

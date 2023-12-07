@@ -10,6 +10,7 @@ import com.lucas.petros.commons.utils.Event
 import com.lucas.petros.commons.utils.resultResource
 import com.lucas.petros.spotfylab.features.login.domain.model.AccessToken
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetAuthorizationRequest
+import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lucas.petros.commons.data.Constants.ACCESS_TOKEN
 import com.lucas.petros.commons.utils.SecureTokenManager
-import com.lucas.petros.spotfylab.R
 import com.lucas.petros.spotfylab.HomeActivity
+import com.lucas.petros.spotfylab.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
                 .commit()
         } else {
             startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 }

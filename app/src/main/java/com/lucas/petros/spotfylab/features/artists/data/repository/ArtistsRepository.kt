@@ -8,5 +8,4 @@ interface ArtistsRepository {
 
     suspend fun getArtistsPage(auth: String): Pager<Int, Artist>
     suspend fun getAlbumsByArtistId(auth: String, id: String): Pager<Int, Album>
-
 }

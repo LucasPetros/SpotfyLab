@@ -1,5 +1,6 @@
 import Versions.lifecycleViewModelVersion
 import Versions.livedataVersion
+import Versions.roomVersion
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object AppDependencies {
@@ -44,6 +45,11 @@ object AppDependencies {
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersions}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersions}"
+
+    //Room
+    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
 
     // Navigation
     private const val navigationFragment =
@@ -97,6 +103,10 @@ object AppDependencies {
         add(appcompat)
     }
 
+    val roomLibraries = arrayListOf<String>().apply {
+        add(roomKtx)
+        add(roomRuntime)
+    }
 
     val lifecycleLibraries = arrayListOf<String>().apply {
         add(lifecycleLivedataKtx)

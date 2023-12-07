@@ -36,6 +36,9 @@ object Versions {
     const val fragmentKtxVersion = "1.5.4"
     const val paging = "3.1.1"
 
+    //Room
+    const val roomVersion = "2.4.3"
+
     // Unit test
     const val junit = "4.13.2"
     const val mockk = "1.12.5"
