@@ -3,8 +3,8 @@ package com.lucas.petros.spotfylab.features.artists.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.lucas.petros.spotfylab.data_source.ArtistsDao
-import com.lucas.petros.spotfylab.features.artists.data.data_source.AlbumsDataSource
-import com.lucas.petros.spotfylab.features.artists.data.data_source.ArtistsDataSource
+import com.lucas.petros.spotfylab.features.artists.data.AlbumsDataSource
+import com.lucas.petros.spotfylab.features.artists.data.ArtistsDataSource
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.domain.model.Album
 import com.lucas.petros.spotfylab.features.artists.domain.model.Artist

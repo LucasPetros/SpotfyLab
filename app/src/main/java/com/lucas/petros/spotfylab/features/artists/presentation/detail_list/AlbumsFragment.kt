@@ -19,7 +19,6 @@ class AlbumsFragment :
     BaseFragmentVDB<FragmentAlbumsBinding>(R.layout.fragment_albums) {
 
     private val vm: AlbumsViewModel by viewModels()
-    private val args = navArgs<AlbumsFragmentArgs>()
     private var albumsAdapter: AlbumsAdapter? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

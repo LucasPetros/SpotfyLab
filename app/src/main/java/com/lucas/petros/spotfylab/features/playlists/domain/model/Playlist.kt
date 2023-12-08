@@ -1,15 +1,15 @@
-package com.lucas.petros.spotfylab.features.artists.domain.model
+package com.lucas.petros.spotfylab.features.playlists.domain.model
 
 
 import com.google.gson.annotations.SerializedName
 import com.lucas.petros.commons.data.remote.dto.ExternalUrlsDto
 import com.lucas.petros.commons.data.remote.dto.ImageDto
 
-data class Album(
+data class Playlist(
+    val collaborative: Boolean,
+    val description: String,
     val id: String,
-    val artistId: String,
     val imageUrl: String,
     val name: String,
-    val releaseDate: String,
-    val releaseDatePrecision: String,
+    val ownerName: String,
 )

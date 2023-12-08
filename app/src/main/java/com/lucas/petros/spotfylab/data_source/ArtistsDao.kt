@@ -24,8 +24,9 @@ interface ArtistsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAlbums(artists: List<AlbumEntity>)
 
-    @Query("SELECT * FROM Album LIMIT :pageSize OFFSET :offset")
+    @Query("SELECT * FROM Album WHERE artistId =:id LIMIT :pageSize OFFSET :offset")
     suspend fun getAlbums(
+        id: String,
         pageSize: Int,
         offset: Int
     ): List<AlbumEntity>?

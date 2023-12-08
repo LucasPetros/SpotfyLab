@@ -17,7 +17,7 @@
         tools:context=".features.artists.presentation.detail_list.AlbumsFragment">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/ibBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -39,7 +39,7 @@
             android:layout_marginStart="@dimen/margin_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ivAlbum"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/ibBack"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -62,10 +62,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@+id/ibBack" />
 
         <com.lucas.petros.ui.UILoading
-            android:id="@+id/uil_login"
+            android:id="@+id/uil_loading"
             isVisible="@{vm.showLoading}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

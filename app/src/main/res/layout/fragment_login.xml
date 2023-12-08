@@ -46,16 +46,16 @@
                 android:layout_margin="@dimen/margin_normal"
                 android:background="@drawable/button_background_radius"
                 android:text="@string/btn_login"
-                android:textColor="?attr/colorOnPrimary" />
+                android:textColor="?attr/colorPrimaryVariant" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
             android:id="@+id/vButtonLogin"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{()-> vm.onClickButtonLogin()}"
             android:layout_marginHorizontal="@dimen/margin_extra_large"
             android:background="@android:color/transparent"
+            android:onClick="@{()-> vm.onClickButtonLogin()}"
             app:layout_constraintBottom_toBottomOf="@+id/lnButton"
             app:layout_constraintEnd_toEndOf="@+id/lnButton"
             app:layout_constraintStart_toStartOf="@+id/lnButton"
