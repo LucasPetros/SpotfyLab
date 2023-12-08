@@ -8,6 +8,7 @@ import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsAp
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity
 import com.lucas.petros.spotfylab.features.artists.domain.model.Album
+import retrofit2.HttpException
 import java.io.IOException
 
 class AlbumsDataSource(
@@ -38,7 +39,10 @@ class AlbumsDataSource(
         } catch (e: IOException) {
             val nextPage = if (localAlbums.isNotEmpty()) currentPage + 1 else null
             LoadResult.Page(data = localAlbums, prevKey = null, nextKey = nextPage)
-        } catch (e: Exception) {
+        } catch (e: HttpException) {
+            val nextPage = if (localAlbums.isNotEmpty()) currentPage + 1 else null
+            LoadResult.Page(data = localAlbums, prevKey = null, nextKey = nextPage)
+        }catch (e: Exception) {
             LoadResult.Error(e)
         }
     }

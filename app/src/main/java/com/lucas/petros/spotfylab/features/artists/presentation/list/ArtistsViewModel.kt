@@ -1,6 +1,7 @@
 package com.lucas.petros.spotfylab.features.artists.presentation.list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
@@ -21,6 +22,7 @@ import com.lucas.petros.spotfylab.features.login.domain.model.UserProfile
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetRefreshToken
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -37,24 +39,24 @@ class ArtistsViewModel @Inject constructor(
 
     val pagingList = MutableLiveData<Flow<PagingData<Artist>>>()
 
-    val stateToken = MutableLiveData<BaseState<AccessToken>>()
+    val stateAccess = MutableLiveData<BaseState<AccessToken>>()
     private val stateUserProfile = MutableLiveData<BaseState<UserProfile>>()
     val image = stateUserProfile.map { it.data?.imageUrl }
 
     init {
         getNewToken()
-        getProfile()
     }
 
-    fun getArtists() {
+
+    fun getArtists(auth:String) {
         viewModelScope.launch {
-            pagingList.value = useCase.execute(secureToken.getToken(ACCESS_TOKEN).handleOpt())
+            pagingList.value = useCase.execute(auth)
                 .cachedIn(viewModelScope)
         }
     }
 
-    private fun getProfile(){
-        getProfile.invoke(secureToken.getToken(ACCESS_TOKEN).handleOpt()).onEach { result ->
+    fun getProfile(auth:String){
+        getProfile.invoke(auth).onEach { result ->
             resultResource(result,stateUserProfile)
         }.launchIn(viewModelScope)
     }
@@ -63,16 +65,15 @@ class ArtistsViewModel @Inject constructor(
         getNewToken.invoke(secureToken.getToken(TOKEN_REFRESH).handleOpt()).onEach { result ->
             when (result) {
                 is DataResource.Loading -> {
-                    stateToken.value = BaseState(isLoading = true)
+                    stateAccess.value = BaseState(isLoading = true)
                 }
 
                 is DataResource.Success -> {
-                    stateToken.value = BaseState(isLoading = false, data = result.data)
-                    secureToken.saveToken(ACCESS_TOKEN, result.data?.accessToken.handleOpt())
+                    stateAccess.value = BaseState(isLoading = false, data = result.data)
                 }
 
                 is DataResource.Error -> {
-                    stateToken.value = BaseState(
+                    stateAccess.value = BaseState(
                         error = result.message.handleOpt(),
                         data = result.data,
                         isLoading = false

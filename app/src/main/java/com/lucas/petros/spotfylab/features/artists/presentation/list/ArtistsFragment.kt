@@ -6,18 +6,23 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.lucas.petros.commons.base.BaseFragmentVDB
+import com.lucas.petros.commons.data.Constants
 import com.lucas.petros.commons.extension.handleOpt
+import com.lucas.petros.commons.utils.SecureTokenManager
 import com.lucas.petros.spotfylab.R
 import com.lucas.petros.spotfylab.databinding.FragmentArtistsBinding
 import com.lucas.petros.spotfylab.features.artists.presentation.list.adapter.ArtistsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ArtistsFragment : BaseFragmentVDB<FragmentArtistsBinding>(R.layout.fragment_artists) {
     private val vm: ArtistsViewModel by viewModels()
     private var artistsAdapter: ArtistsAdapter? = null
+    @Inject
+    lateinit var secureToken: SecureTokenManager
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
@@ -47,9 +52,11 @@ class ArtistsFragment : BaseFragmentVDB<FragmentArtistsBinding>(R.layout.fragmen
     }
 
     private fun observerNewToken() {
-        vm.stateToken.observe(viewLifecycleOwner) { tokenData ->
+        vm.stateAccess.observe(viewLifecycleOwner) { tokenData ->
             if (tokenData.data?.accessToken?.isNotBlank() == true || tokenData.error.isNotBlank()) {
-                vm.getArtists()
+                tokenData.data?.let {  secureToken.saveToken(Constants.ACCESS_TOKEN, it.accessToken) }
+                vm.getProfile(tokenData.data?.accessToken.handleOpt())
+                vm.getArtists(tokenData.data?.accessToken.handleOpt())
             }
         }
     }

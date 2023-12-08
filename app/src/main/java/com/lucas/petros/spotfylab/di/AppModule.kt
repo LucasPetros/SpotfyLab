@@ -118,7 +118,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePlaylistsRepository(api: PlaylistsApi, playlistsDao: PlaylistsDao): PlaylistsRepository {
+    fun providePlaylistsRepository(
+        api: PlaylistsApi,
+        playlistsDao: PlaylistsDao
+    ): PlaylistsRepository {
         return IPlaylistsRepository(api, playlistsDao)
     }
 }

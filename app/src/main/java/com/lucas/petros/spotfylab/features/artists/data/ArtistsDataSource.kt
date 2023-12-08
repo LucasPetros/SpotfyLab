@@ -8,6 +8,7 @@ import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsAp
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity
 import com.lucas.petros.spotfylab.features.artists.domain.model.Artist
+import retrofit2.HttpException
 import java.io.IOException
 
 class ArtistsDataSource(
@@ -26,12 +27,14 @@ class ArtistsDataSource(
         return try {
 
             val artists = api.getArtists("Bearer $auth", offset, pageSize).toDomain().artists
-            dao.saveArtists(artists.map { it.toEntity() })
+            dao.saveArtists(artists.map { it.toEntity() }.handleOpt())
 
             val nextPage = if (artists.isNotEmpty()) currentPage + 1 else null
-
             LoadResult.Page(data = artists, prevKey = null, nextKey = nextPage)
-        }  catch (e: IOException) {
+        } catch (e: IOException) {
+            val nextPage = if (localArtists.isNotEmpty()) currentPage + 1 else null
+            LoadResult.Page(data = localArtists, prevKey = null, nextKey = nextPage)
+        } catch (e: HttpException) {
             val nextPage = if (localArtists.isNotEmpty()) currentPage + 1 else null
             LoadResult.Page(data = localArtists, prevKey = null, nextKey = nextPage)
         } catch (e: Exception) {
