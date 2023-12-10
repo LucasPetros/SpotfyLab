@@ -4,15 +4,15 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.lucas.petros.commons.data.Constants.PREFS_FILE_NAME
 import com.lucas.petros.commons.utils.CryptoManager
 import com.lucas.petros.commons.utils.CryptoUtils
-import com.lucas.petros.commons.utils.SecureTokenManager
+import com.lucas.petros.commons.utils.Prefs
+import com.lucas.petros.commons.utils.Prefs.Companion.PREFS_FILE_NAME
 import com.lucas.petros.network.getRetrofit
-import com.lucas.petros.spotfylab.data_source.AppDatabase
-import com.lucas.petros.spotfylab.data_source.ArtistsDao
-import com.lucas.petros.spotfylab.data_source.LoginDao
-import com.lucas.petros.spotfylab.data_source.PlaylistsDao
+import com.lucas.petros.spotfylab.data.data_source.AppDatabase
+import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.data.data_source.LoginDao
+import com.lucas.petros.spotfylab.data.data_source.PlaylistsDao
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.data.repository.ArtistsRepository
 import com.lucas.petros.spotfylab.features.artists.data.repository.IArtistsRepository
@@ -85,8 +85,8 @@ object AppModule {
     fun provideSecureTokenManager(
         sharedPreferences: SharedPreferences,
         cryptoManager: CryptoManager
-    ): SecureTokenManager {
-        return SecureTokenManager(sharedPreferences, cryptoManager)
+    ): Prefs {
+        return Prefs(sharedPreferences, cryptoManager)
     }
 
     @Provides

@@ -8,11 +8,11 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.lucas.petros.commons.base.BaseState
 import com.lucas.petros.commons.base.BaseViewModel
-import com.lucas.petros.commons.data.Constants
-import com.lucas.petros.commons.data.Constants.ACCESS_TOKEN
 import com.lucas.petros.commons.extension.handleOpt
 import com.lucas.petros.commons.utils.Event
-import com.lucas.petros.commons.utils.SecureTokenManager
+import com.lucas.petros.commons.utils.Prefs
+import com.lucas.petros.commons.utils.Prefs.Companion.KEY_ACCESS_TOKEN
+import com.lucas.petros.commons.utils.Prefs.Companion.KEY_USER_ID
 import com.lucas.petros.commons.utils.resultResource
 import com.lucas.petros.spotfylab.features.login.domain.model.UserProfile
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
@@ -31,41 +31,41 @@ class PlaylistsViewModel @Inject constructor(
     private val useCase: GetPlaylists,
     private val getUserProfile: GetUserProfile,
     private val createPlaylist: PostCreatePlaylist,
-    private val secureToken: SecureTokenManager,
+    private val prefs: Prefs,
 ) : BaseViewModel() {
 
     val pagingList = MutableLiveData<Flow<PagingData<Playlist>>>()
+
     private val stateProfile = MutableLiveData<BaseState<UserProfile>>()
     val imageProfile = stateProfile.map { it.data?.imageUrl.handleOpt() }
-    private val userId = stateProfile.map { it.data?.id }
-    private val stateCreatePlaylist = MutableLiveData<BaseState<Boolean>>()
+
+    val stateCreatePlaylist = MutableLiveData<BaseState<Boolean>>()
     val isLoadingCreate = stateCreatePlaylist.map { it.isLoading }
 
     init {
         getUserProfile()
-        getPlaylists()
     }
 
-    fun createPlaylist(name: String) {
+    fun createPlaylist(namePlaylist: String) {
         createPlaylist.invoke(
-            secureToken.getToken(ACCESS_TOKEN).handleOpt(),
-            userId.value.handleOpt(),
-            name
+            prefs.getDecrypted(KEY_ACCESS_TOKEN).handleOpt(),
+            prefs.getDecrypted(KEY_USER_ID).handleOpt(),
+            namePlaylist
         ).onEach { result ->
             resultResource(result, stateCreatePlaylist)
         }.launchIn(viewModelScope)
     }
 
     private fun getUserProfile() {
-        getUserProfile.invoke(secureToken.getToken(ACCESS_TOKEN).handleOpt()).onEach { result ->
+        getUserProfile.invoke(prefs.getDecrypted(KEY_ACCESS_TOKEN).handleOpt()).onEach { result ->
             resultResource(result, stateProfile)
         }.launchIn(viewModelScope)
     }
 
-    private fun getPlaylists() {
+    fun getPlaylists() {
         viewModelScope.launch {
             pagingList.value =
-                useCase.execute(secureToken.getToken(ACCESS_TOKEN).handleOpt())
+                useCase.execute(prefs.getDecrypted(KEY_ACCESS_TOKEN).handleOpt())
                     .cachedIn(viewModelScope)
         }
     }
@@ -73,8 +73,8 @@ class PlaylistsViewModel @Inject constructor(
     private val _showLoading = MutableLiveData(true)
     val showLoading: LiveData<Boolean> = _showLoading
 
-    fun showLoading(isLoad: Boolean) {
-        _showLoading.value = false
+    fun showLoading(isLoading: Boolean) {
+        _showLoading.value = isLoading
     }
 
     private val _onClickButton = MutableLiveData<Event<Boolean>>()

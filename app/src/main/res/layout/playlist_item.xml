@@ -21,6 +21,7 @@
             loadUrlImage="@{playlist.imageUrl}"
             android:layout_width="@dimen/icon_huge"
             android:layout_height="@dimen/icon_huge"
+            imageDefault="@{@drawable/image_new_playlist}"
             android:layout_marginStart="@dimen/margin_huge"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

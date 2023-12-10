@@ -11,16 +11,16 @@ import com.lucas.petros.spotfylab.features.playlists.domain.model.PlaylistReques
 import com.lucas.petros.spotfylab.features.playlists.domain.model.Playlists
 
 fun PlaylistsDto.toDomain() = Playlists(
-    playlists = items.map { it.toDomain() }
+    playlists = items.map { it.toDomain() }.handleOpt()
 )
 
 fun PlaylistDto.toDomain() = Playlist(
     collaborative = collaborative.handleOpt(),
     description = description.handleOpt(),
-    id = id,
-    imageUrl = images.map { it.toDomain().url.handleOpt() }[0],
+    id = id.handleOpt(),
+    imageUrl = images.firstOrNull()?.toDomain()?.url.handleOpt(),
     name = name.handleOpt(),
-    ownerName = owner.displayName
+    ownerName = owner.displayName.handleOpt()
 )
 
 fun Playlist.toEntity() = PlaylistEntity(

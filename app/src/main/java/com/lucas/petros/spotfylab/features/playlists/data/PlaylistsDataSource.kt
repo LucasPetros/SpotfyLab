@@ -3,11 +3,12 @@ package com.lucas.petros.spotfylab.features.playlists.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data_source.PlaylistsDao
+import com.lucas.petros.spotfylab.data.data_source.PlaylistsDao
 import com.lucas.petros.spotfylab.features.playlists.data.remote.service.PlaylistsApi
 import com.lucas.petros.spotfylab.features.playlists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.playlists.domain.mapper.toEntity
 import com.lucas.petros.spotfylab.features.playlists.domain.model.Playlist
+import retrofit2.HttpException
 import java.io.IOException
 
 class PlaylistsDataSource(
@@ -27,15 +28,16 @@ class PlaylistsDataSource(
         val localPlaylists = dao.getPlayLists(pageSize, offset)?.map { it.toDomain() }.handleOpt()
         return try {
 
-            val playlists =
-                api.getPlaylists("Bearer $auth", offset, pageSize).toDomain().playlists
-
-            dao.savePlayLists(playlists.map { it.toEntity() })
+            val playlists = api.getPlaylists("Bearer $auth", offset, pageSize).toDomain().playlists
+            dao.deletePlaylists(localPlaylists.map { it.toEntity().id }.handleOpt())
+            dao.savePlayLists(playlists.map { it.toEntity() }.handleOpt())
 
             val nextPage = if (playlists.isNotEmpty()) currentPage + 1 else null
-
             LoadResult.Page(data = playlists, prevKey = null, nextKey = nextPage)
         } catch (e: IOException) {
+            val nextPage = if (localPlaylists.isNotEmpty()) currentPage + 1 else null
+            LoadResult.Page(data = localPlaylists, prevKey = null, nextKey = nextPage)
+        } catch (e: HttpException) {
             val nextPage = if (localPlaylists.isNotEmpty()) currentPage + 1 else null
             LoadResult.Page(data = localPlaylists, prevKey = null, nextKey = nextPage)
         } catch (e: Exception) {

@@ -2,10 +2,13 @@ package com.lucas.petros.spotfylab.features.playlists.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.lucas.petros.commons.base.BaseFragmentVDB
+import com.lucas.petros.commons.extension.handleOpt
 import com.lucas.petros.commons.extension.observeAndNavigateBack
+import com.lucas.petros.network.NetworkConstants.ERROR_NETWORK
 import com.lucas.petros.spotfylab.R
 import com.lucas.petros.spotfylab.databinding.FragmentPlaylistsBinding
 import com.lucas.petros.spotfylab.features.playlists.presentation.adapter.PlaylistsAdapter
@@ -15,14 +18,16 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fragment_playlists),
-    CreatePlaylistDialogFragment.DialogListener {
+    CreatePlaylistDialog.DialogListener {
     private val vm: PlaylistsViewModel by viewModels()
     private var playlistsAdapter: PlaylistsAdapter? = null
-    private val dialogFragment = CreatePlaylistDialogFragment()
+    private val dialogFragment = CreatePlaylistDialog()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupRecyclerView()
+        vm.getPlaylists()
+
     }
 
     override fun setupViewModel() {
@@ -33,6 +38,7 @@ class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fra
         observerOnButtonClick()
         observerLoadingCreatePlaylist()
         observerPlaylistsPaging()
+        observerCreatePlaylist()
         observeAndNavigateBack(vm.navigateBack)
     }
 
@@ -61,6 +67,16 @@ class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fra
                     showCustomDialog()
                 }
             }
+        }
+    }
+
+    private fun observerCreatePlaylist() {
+        vm.stateCreatePlaylist.observe(viewLifecycleOwner) { state ->
+                if (state.data.handleOpt()) {
+                    vm.getPlaylists()
+                }else if(state.error.contains(ERROR_NETWORK)) {
+                    Toast.makeText(requireContext(), "Verifique sua conexão com a internet", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 

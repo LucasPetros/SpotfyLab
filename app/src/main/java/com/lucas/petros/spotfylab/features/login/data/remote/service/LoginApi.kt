@@ -1,6 +1,6 @@
 package com.lucas.petros.spotfylab.features.login.data.remote.service
 
-import com.lucas.petros.commons.data.Constants.TOKEN_REFRESH
+import com.lucas.petros.commons.utils.Prefs.Companion.KEY_TOKEN_REFRESH
 import com.lucas.petros.network.SPOTIFY_AUTH_URL
 import com.lucas.petros.spotfylab.BuildConfig.CLIENT_ID
 import com.lucas.petros.spotfylab.BuildConfig.SECRET_ID
@@ -21,7 +21,7 @@ interface LoginApi {
     @FormUrlEncoded
     @POST
     suspend fun getAccessToken(
-        @Url url:String = SPOTIFY_AUTH_URL,
+        @Url url: String = SPOTIFY_AUTH_URL,
         @Header("Authorization") auth: String = Credentials.basic(
             CLIENT_ID,
             SECRET_ID
@@ -34,15 +34,15 @@ interface LoginApi {
 
     @FormUrlEncoded
     @POST
-    suspend fun getRefreshToken(
-        @Url url:String = SPOTIFY_AUTH_URL,
+    suspend fun getNewToken(
+        @Url url: String = SPOTIFY_AUTH_URL,
         @Header("Authorization") auth: String = Credentials.basic(
             CLIENT_ID,
             SECRET_ID
         ),
         @Header("Content-Type") content: String = "application/x-www-form-urlencoded",
         @Field("refresh_token") refreshToken: String,
-        @Field("grant_type") grantType: String = TOKEN_REFRESH,
+        @Field("grant_type") grantType: String = KEY_TOKEN_REFRESH,
         @Field("client_id") clientId: String = CLIENT_ID
     ): AccessTokenDto
 

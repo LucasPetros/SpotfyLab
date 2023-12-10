@@ -3,7 +3,7 @@ package com.lucas.petros.spotfylab.features.artists.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity
@@ -29,9 +29,11 @@ class AlbumsDataSource(
         val localAlbums = dao.getAlbums(id, pageSize, offset)?.map { it.toDomain(id) }.handleOpt()
         return try {
 
-            val albums = api.getArtistAlbumsById("Bearer $auth", id, offset, pageSize).toDomain(id).albums
+            val albums =
+                api.getArtistAlbumsById("Bearer $auth", id, offset, pageSize).toDomain(id).albums
+            dao.deleteAlbums(localAlbums.map { it.toEntity(id).id })
 
-            dao.saveAlbums(albums.map { it.toEntity(id) })
+            dao.saveAlbums(albums.map { it.toEntity(id) }.handleOpt())
 
             val nextPage = if (albums.isNotEmpty()) currentPage + 1 else null
 
@@ -42,7 +44,7 @@ class AlbumsDataSource(
         } catch (e: HttpException) {
             val nextPage = if (localAlbums.isNotEmpty()) currentPage + 1 else null
             LoadResult.Page(data = localAlbums, prevKey = null, nextKey = nextPage)
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }

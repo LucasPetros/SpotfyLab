@@ -1,4 +1,4 @@
-package com.lucas.petros.spotfylab.data_source
+package com.lucas.petros.spotfylab.data.data_source
 
 import androidx.room.Dao
 import androidx.room.Insert

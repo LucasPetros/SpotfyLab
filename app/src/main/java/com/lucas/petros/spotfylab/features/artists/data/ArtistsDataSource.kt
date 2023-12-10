@@ -3,7 +3,7 @@ package com.lucas.petros.spotfylab.features.artists.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity
@@ -27,6 +27,7 @@ class ArtistsDataSource(
         return try {
 
             val artists = api.getArtists("Bearer $auth", offset, pageSize).toDomain().artists
+            dao.deleteArtists(localArtists.map { it.toEntity().id }.handleOpt())
             dao.saveArtists(artists.map { it.toEntity() }.handleOpt())
 
             val nextPage = if (artists.isNotEmpty()) currentPage + 1 else null

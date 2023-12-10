@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.lucas.petros.spotfylab.R
-import com.lucas.petros.spotfylab.databinding.FragmentCreatePlaylistDialogBinding
+import com.lucas.petros.spotfylab.databinding.DialogCreatePlaylistBinding
 
-class CreatePlaylistDialogFragment : DialogFragment() {
+class CreatePlaylistDialog : DialogFragment() {
 
     interface DialogListener {
         fun onCreateButtonClick(userInput: String)
@@ -17,7 +17,7 @@ class CreatePlaylistDialogFragment : DialogFragment() {
 
     private var dialogListener: DialogListener? = null
     private var editText: EditText? = null
-    lateinit var binding: FragmentCreatePlaylistDialogBinding
+    lateinit var binding: DialogCreatePlaylistBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class CreatePlaylistDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCreatePlaylistDialogBinding.inflate(inflater, container, false)
+        binding = DialogCreatePlaylistBinding.inflate(inflater, container, false)
 
         editText = binding.etNamePlaylist
 
@@ -39,9 +39,9 @@ class CreatePlaylistDialogFragment : DialogFragment() {
         positiveButton.setOnClickListener {
             dialogListener?.let {
                 val userInput = editText?.text.toString()
-                if (userInput.isBlank()){
+                if (userInput.isBlank()) {
                     editText?.error = "Preencha o campo para continuar"
-                }else{
+                } else {
                     it.onCreateButtonClick(userInput)
                     dismissNow()
                 }

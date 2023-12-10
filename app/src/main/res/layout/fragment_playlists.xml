@@ -32,11 +32,11 @@
 
         <ImageView
             android:id="@+id/ivAlbum"
+            isCircle="@{true}"
+            loadUrlImage="@{vm.imageProfile}"
             android:layout_width="@dimen/icon_normal"
             android:layout_height="@dimen/icon_normal"
             android:layout_marginTop="@dimen/margin_normal"
-            loadUrlImage="@{vm.imageProfile}"
-            isCircle="@{true}"
             android:layout_marginEnd="@dimen/margin_huge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_extra_large"
-            android:layout_marginBottom="?actionBarSize"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,9 +75,9 @@
             android:id="@+id/vButtonCreate"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{()-> vm.onClickButton()}"
             android:layout_marginHorizontal="@dimen/margin_extra_large"
             android:background="@android:color/transparent"
+            android:onClick="@{()-> vm.onClickButton()}"
             app:layout_constraintBottom_toBottomOf="@+id/lnButton"
             app:layout_constraintEnd_toEndOf="@+id/lnButton"
             app:layout_constraintStart_toStartOf="@+id/lnButton"
@@ -86,10 +85,10 @@
 
         <com.lucas.petros.ui.UILoading
             android:id="@+id/uil_loading"
+            isVisible="@{vm.showLoading}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_huge"
-            isVisible="@{vm.showLoading}"
             app:description="@string/loading"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

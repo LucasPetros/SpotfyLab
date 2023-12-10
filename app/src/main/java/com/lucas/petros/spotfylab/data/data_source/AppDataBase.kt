@@ -1,4 +1,4 @@
-package com.lucas.petros.spotfylab.data_source
+package com.lucas.petros.spotfylab.data.data_source
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -19,6 +19,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun playlistsDao(): PlaylistsDao
 
     companion object {
-        const val DATABASE_NAME = "xaate_db"
+        const val DATABASE_NAME = "xxx_db"
     }
 }

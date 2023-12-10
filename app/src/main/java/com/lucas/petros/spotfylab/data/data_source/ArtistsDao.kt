@@ -1,4 +1,4 @@
-package com.lucas.petros.spotfylab.data_source
+package com.lucas.petros.spotfylab.data.data_source
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -18,6 +18,10 @@ interface ArtistsDao {
         offset: Int
     ): List<ArtistEntity>?
 
+
+    @Query("DELETE FROM Artist WHERE id IN (:artists)")
+    suspend fun deleteArtists(artists: List<String>?)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAlbums(artists: List<AlbumEntity>)
 
@@ -27,4 +31,8 @@ interface ArtistsDao {
         pageSize: Int,
         offset: Int
     ): List<AlbumEntity>?
+
+
+    @Query("DELETE FROM Album WHERE id IN (:albums)")
+    suspend fun deleteAlbums(albums: List<String>?)
 }

@@ -46,6 +46,7 @@
                 android:layout_margin="@dimen/margin_normal"
                 android:background="@drawable/button_background_radius"
                 android:text="@string/btn_login"
+                android:textAllCaps="false"
                 android:textColor="?attr/colorPrimaryVariant" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

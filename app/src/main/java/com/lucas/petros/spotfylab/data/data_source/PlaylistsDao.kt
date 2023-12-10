@@ -1,4 +1,4 @@
-package com.lucas.petros.spotfylab.data_source
+package com.lucas.petros.spotfylab.data.data_source
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -11,6 +11,9 @@ interface PlaylistsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun savePlayLists(playlists: List<PlaylistEntity>)
+
+    @Query("DELETE FROM Playlist WHERE id IN (:playlists)")
+    suspend fun deletePlaylists(playlists: List<String>?)
 
     @Query("SELECT * FROM Playlist LIMIT :pageSize OFFSET :offset")
     suspend fun getPlayLists(
