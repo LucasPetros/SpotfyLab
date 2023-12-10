@@ -1,6 +1,7 @@
 package com.lucas.petros.spotfylab.features.artists.data.repository
 
 import androidx.paging.Pager
+import androidx.paging.PagingSource
 import com.lucas.petros.spotfylab.features.artists.domain.model.Album
 import com.lucas.petros.spotfylab.features.artists.domain.model.Artist
 

@@ -1,13 +1,14 @@
-package com.lucas.petros.spotfylab.features.artists.data.data_source
+package com.lucas.petros.spotfylab.features.artists.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity
 import com.lucas.petros.spotfylab.features.artists.domain.model.Album
+import retrofit2.HttpException
 import java.io.IOException
 
 class AlbumsDataSource(
@@ -25,16 +26,22 @@ class AlbumsDataSource(
 
         val offset = currentPage * pageSize
 
-        val localAlbums = dao.getAlbums(pageSize, offset)?.map { it.toDomain() }.handleOpt()
+        val localAlbums = dao.getAlbums(id, pageSize, offset)?.map { it.toDomain(id) }.handleOpt()
         return try {
 
-            val albums = api.getArtistAlbumsById("Bearer $auth", id, offset, pageSize).toDomain().albums
-            dao.saveAlbums(albums.map { it.toEntity() })
+            val albums =
+                api.getArtistAlbumsById("Bearer $auth", id, offset, pageSize).toDomain(id).albums
+            dao.deleteAlbums(localAlbums.map { it.toEntity(id).id })
+
+            dao.saveAlbums(albums.map { it.toEntity(id) }.handleOpt())
 
             val nextPage = if (albums.isNotEmpty()) currentPage + 1 else null
 
             LoadResult.Page(data = albums, prevKey = null, nextKey = nextPage)
         } catch (e: IOException) {
+            val nextPage = if (localAlbums.isNotEmpty()) currentPage + 1 else null
+            LoadResult.Page(data = localAlbums, prevKey = null, nextKey = nextPage)
+        } catch (e: HttpException) {
             val nextPage = if (localAlbums.isNotEmpty()) currentPage + 1 else null
             LoadResult.Page(data = localAlbums, prevKey = null, nextKey = nextPage)
         } catch (e: Exception) {

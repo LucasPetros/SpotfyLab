@@ -1,6 +1,9 @@
 package com.lucas.petros.spotfylab.features.login.domain.use_case
 
 import com.lucas.petros.commons.data.DataResource
+import com.lucas.petros.commons.extension.handleOpt
+import com.lucas.petros.commons.utils.Prefs
+import com.lucas.petros.commons.utils.Prefs.Companion.KEY_USER_ID
 import com.lucas.petros.network.NetworkConstants
 import com.lucas.petros.network.extension.fetchErrorMessage
 import com.lucas.petros.spotfylab.features.login.data.repository.LoginRepository
@@ -13,7 +16,10 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetUserProfile @Inject constructor(private val repository: LoginRepository) {
+class GetUserProfile @Inject constructor(
+    private val repository: LoginRepository,
+    private val prefs: Prefs
+) {
 
     operator fun invoke(auth: String): Flow<DataResource<UserProfile>> =
         flow {
@@ -21,7 +27,7 @@ class GetUserProfile @Inject constructor(private val repository: LoginRepository
             try {
                 emit(DataResource.Loading(data = localInfo))
                 val data = repository.getUserProfile(auth)
-                repository.saveInfoUser(data.toEntity())
+                saveData(data)
                 emit(DataResource.Success(data = data))
             } catch (e: HttpException) {
                 emit(
@@ -34,4 +40,9 @@ class GetUserProfile @Inject constructor(private val repository: LoginRepository
                 emit(DataResource.Error(data = localInfo, message = NetworkConstants.ERROR_NETWORK))
             }
         }
+
+    private suspend fun saveData(data: UserProfile) {
+        prefs.saveEncrypted(KEY_USER_ID, data.id.handleOpt())
+        repository.saveInfoUser(data.toEntity())
+    }
 }

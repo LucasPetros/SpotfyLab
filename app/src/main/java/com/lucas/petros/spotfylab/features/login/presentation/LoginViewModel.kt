@@ -39,7 +39,6 @@ class LoginViewModel @Inject constructor(
 
     fun onClickButtonLogin() {
         _btnLoginState.value = Event(true)
-        _showLoading.value = true
     }
 
     fun showLoading(isLoading: Boolean){

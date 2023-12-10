@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Margin -->
+    <dimen name="margin_dialog">48dp</dimen>
     <dimen name="margin_extra_large">36dp</dimen>
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_extra_huge">24dp</dimen>
@@ -23,11 +24,13 @@
     <dimen name="corner_small">4dp</dimen>
 
     <!-- button Login -->
+    <dimen name="width_size_large">185dp</dimen>
     <dimen name="width_size">133dp</dimen>
     <dimen name="height_size">42dp</dimen>
 
     <!-- text -->
     <dimen name="text_title">16sp</dimen>
+    <dimen name="text_large">24sp</dimen>
     <dimen name="text_normal">14sp</dimen>
     <dimen name="text_small">12sp</dimen>
 

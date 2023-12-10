@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
 import com.lucas.petros.commons.base.BaseFragmentVDB
 import com.lucas.petros.commons.extension.observeAndNavigateBack
 import com.lucas.petros.spotfylab.R
 import com.lucas.petros.spotfylab.databinding.FragmentAlbumsBinding
 import com.lucas.petros.spotfylab.features.artists.presentation.detail_list.adapter.AlbumsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -19,7 +20,6 @@ class AlbumsFragment :
     BaseFragmentVDB<FragmentAlbumsBinding>(R.layout.fragment_albums) {
 
     private val vm: AlbumsViewModel by viewModels()
-    private val args = navArgs<AlbumsFragmentArgs>()
     private var albumsAdapter: AlbumsAdapter? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

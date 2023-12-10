@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="vm"
-    type="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsViewModel" />
+
+        <variable
+            name="vm"
+            type="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +18,13 @@
         tools:context=".features.artists.presentation.detail_list.AlbumsFragment">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/ibBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_left"
-            android:padding="6dp"
             android:onClick="@{() -> vm.navigateBackClick()}"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrow_left"
             app:layout_constraintBottom_toBottomOf="@+id/tvNameArtist"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvNameArtist" />
@@ -32,23 +33,24 @@
             android:id="@+id/tvNameArtist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_normal"
             android:text="@{vm.args.name}"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="@dimen/text_title"
-            android:layout_marginStart="@dimen/margin_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ivAlbum"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/ibBack"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivAlbum"
+            imageDefault="@{@drawable/image_new_playlist}"
+            isCircle="@{true}"
+            loadUrlImage="@{vm.args.imageUrl}"
             android:layout_width="@dimen/icon_huge"
             android:layout_height="@dimen/icon_huge"
             android:layout_marginTop="@dimen/margin_normal"
-            loadUrlImage="@{vm.args.imageUrl}"
-            isCircle="@{true}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,15 +59,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_extra_huge"
-            android:layout_marginBottom="?actionBarSize"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@+id/ibBack" />
 
         <com.lucas.petros.ui.UILoading
-            android:id="@+id/uil_login"
+            android:id="@+id/uil_loading"
             isVisible="@{vm.showLoading}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

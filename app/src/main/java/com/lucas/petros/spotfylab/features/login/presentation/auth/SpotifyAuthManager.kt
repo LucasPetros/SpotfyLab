@@ -1,5 +1,6 @@
 package com.lucas.petros.spotfylab.features.login.presentation.auth
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.view.View
@@ -20,6 +21,7 @@ class SpotifyAuthManager(
 ) {
 
     fun configureWebView() {
+        webViewCallback.onWebViewLoaded(true)
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
 
@@ -69,6 +71,7 @@ class SpotifyAuthManager(
                 )
             }
         }
+
     }
 
     private fun handleUrl(url: String?) {

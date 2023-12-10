@@ -7,6 +7,7 @@ import com.lucas.petros.commons.data.remote.dto.ImageDto
 
 data class Album(
     val id: String,
+    val artistId: String,
     val imageUrl: String,
     val name: String,
     val releaseDate: String,

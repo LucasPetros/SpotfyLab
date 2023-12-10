@@ -14,7 +14,7 @@ fun ArtistsDto.toDomain() = Artists(
 
 fun ArtistDto.toDomain() = Artist(
     id = id,
-    imageUrl = images.map { it.toDomain() }[0].url.handleOpt(),
+    imageUrl = images.firstOrNull()?.toDomain()?.url.handleOpt(),
     name = name.handleOpt()
 )
 
