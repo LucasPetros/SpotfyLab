@@ -109,7 +109,7 @@ SECRET_ID= SEU_SECRET_ID
 
 ![screenshot-app1](https://github.com/LucasPetros/SpotfyLab/assets/82883174/d81b4bc5-5691-4416-9e44-9548c284aa94)
 
-[screnshot-app2](https://github.com/LucasPetros/SpotfyLab/assets/82883174/10d07557-1f9d-4fa6-b466-9ee487d7a212)
+![screnshot-app2](https://github.com/LucasPetros/SpotfyLab/assets/82883174/10d07557-1f9d-4fa6-b466-9ee487d7a212)
 
 ## Video
 
