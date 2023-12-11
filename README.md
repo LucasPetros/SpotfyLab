@@ -71,6 +71,24 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 
 O projeto possui todas as dependências necessárias nos arquivos do Gradle. Adicione o projeto ao Android Studio ou IntelliJ e sincronize. Todas as dependências serão baixadas e instaladas.
 
+### Configuração do Firebase Analytics
+
+Se o projeto utiliza o Firebase Analytics, será necessário configurar as credenciais do Firebase. Siga as instruções abaixo:
+
+1. Acesse o [Console do Firebase](https://console.firebase.google.com/).
+
+2. Crie um novo projeto ou selecione um projeto existente.
+
+3. No painel do projeto, clique em "Adicionar app" e siga as instruções para adicionar o app Android ao projeto Firebase.
+
+4. Faça o download do arquivo de configuração `google-services.json` e coloque-o no diretório `app` do seu projeto Android.
+
+5. Sincronize o projeto no Android Studio para aplicar as configurações do Firebase.
+
+Certifique-se de não compartilhar o arquivo `google-services.json` publicamente, pois contém informações sensíveis relacionadas ao seu projeto Firebase.
+
+Agora, o Firebase Analytics estará configurado e integrado ao seu projeto Android.
+
 ### ----------------------------------------------------------------------------------------------
 
 ## Configuração
