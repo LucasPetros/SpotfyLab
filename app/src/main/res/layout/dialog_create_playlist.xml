@@ -64,8 +64,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/materialButton2"
-            android:layout_width="@dimen/width_size"
-            android:layout_height="@dimen/height_size"
+            android:layout_width="@dimen/btn_login_width_size"
+            android:layout_height="@dimen/btn_height_size"
             android:layout_margin="@dimen/margin_normal"
             android:background="@drawable/button_background_radius"
             android:text="@string/create"

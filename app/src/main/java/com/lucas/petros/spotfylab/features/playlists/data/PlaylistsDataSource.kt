@@ -3,7 +3,7 @@ package com.lucas.petros.spotfylab.features.playlists.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data.data_source.PlaylistsDao
+import com.lucas.petros.spotfylab.features.playlists.data.local.PlaylistsDao
 import com.lucas.petros.spotfylab.features.playlists.data.remote.service.PlaylistsApi
 import com.lucas.petros.spotfylab.features.playlists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.playlists.domain.mapper.toEntity

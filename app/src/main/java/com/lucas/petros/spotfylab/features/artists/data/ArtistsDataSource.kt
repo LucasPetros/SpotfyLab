@@ -3,7 +3,7 @@ package com.lucas.petros.spotfylab.features.artists.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.lucas.petros.commons.extension.handleOpt
-import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.features.artists.data.local.ArtistsDao
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toDomain
 import com.lucas.petros.spotfylab.features.artists.domain.mapper.toEntity

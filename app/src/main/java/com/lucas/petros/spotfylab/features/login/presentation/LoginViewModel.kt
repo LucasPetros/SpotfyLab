@@ -10,7 +10,6 @@ import com.lucas.petros.commons.utils.Event
 import com.lucas.petros.commons.utils.resultResource
 import com.lucas.petros.spotfylab.features.login.domain.model.AccessToken
 import com.lucas.petros.spotfylab.features.login.domain.use_case.GetAuthorizationRequest
-import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -21,25 +20,29 @@ class LoginViewModel @Inject constructor(
     private val getAuthorization: GetAuthorizationRequest,
 ) : ViewModel() {
 
-    private val state = MutableLiveData<BaseState<AccessToken>>()
-    val stateToken = state.map { it.data }
-
+    // StateResource - Section
+    val stateAccess = MutableLiveData<BaseState<AccessToken>>()
+    val stateToken = stateAccess.map { it.data }
 
     fun getAccessToken(code:String){
         getAuthorization.invoke(code).onEach { result ->
-            resultResource(result,state)
+            resultResource(result,stateAccess)
         }.launchIn(viewModelScope)
     }
+
+    // OnClick Button - Section
+
+    fun onClickButtonLogin() {
+        _btnLoginState.value = Event(true)
+    }
+
+    // Show Loading - Section
 
     private val _showLoading = MutableLiveData<Boolean>()
     val showLoading: LiveData<Boolean> = _showLoading
 
     private val _btnLoginState = MutableLiveData<Event<Boolean>>()
     val btnLoginState: LiveData<Event<Boolean>> = _btnLoginState
-
-    fun onClickButtonLogin() {
-        _btnLoginState.value = Event(true)
-    }
 
     fun showLoading(isLoading: Boolean){
         _showLoading.value = isLoading

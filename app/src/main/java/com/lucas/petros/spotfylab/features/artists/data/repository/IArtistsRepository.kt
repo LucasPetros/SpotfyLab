@@ -2,7 +2,7 @@ package com.lucas.petros.spotfylab.features.artists.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.lucas.petros.spotfylab.data.data_source.ArtistsDao
+import com.lucas.petros.spotfylab.features.artists.data.local.ArtistsDao
 import com.lucas.petros.spotfylab.features.artists.data.AlbumsDataSource
 import com.lucas.petros.spotfylab.features.artists.data.ArtistsDataSource
 import com.lucas.petros.spotfylab.features.artists.data.remote.service.ArtistsApi
