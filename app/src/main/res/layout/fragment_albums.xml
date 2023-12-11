@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.lucas.petros.spotfylab.features.artists.presentation.album_list.AlbumsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/margin_huge"
+        android:paddingTop="@dimen/margin_normal"
+        tools:context=".features.artists.presentation.album_list.AlbumsFragment">
+
+        <ImageButton
+            android:id="@+id/ibBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> vm.navigateBackClick()}"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNameArtist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvNameArtist" />
+
+        <TextView
+            android:id="@+id/tvNameArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@{vm.args.name}"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivAlbum"
+            app:layout_constraintStart_toEndOf="@+id/ibBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivAlbum"
+            imageDefault="@{@drawable/image_new_playlist}"
+            isCircle="@{true}"
+            loadUrlImage="@{vm.args.imageUrl}"
+            android:layout_width="@dimen/icon_huge"
+            android:layout_height="@dimen/icon_huge"
+            android:layout_marginTop="@dimen/margin_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_extra_huge"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibBack" />
+
+        <com.lucas.petros.ui.UILoading
+            android:id="@+id/uil_loading"
+            isVisible="@{vm.showLoading}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_huge"
+            app:description="@string/loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

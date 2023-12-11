@@ -1,47 +1,87 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    kotlin("android")
+    kotlin("kapt")
+    id("com.google.gms.google-services")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.firebase.crashlytics")
+
 }
 
 android {
-    namespace = "com.lucas.petros.spotfylab"
-    compileSdk = 33
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.lucas.petros.spotfylab"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AppConfig.customInstrumentedRunner
+
+    }
+
+    hilt {
+        enableAggregatingTask = true
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName(AppConfig.release) {
+            isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(AppConfig.proguardOptimize),
+                AppConfig.proguardRules
             )
         }
+
+
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
     }
+    viewBinding {
+        android.buildFeatures.viewBinding = true
+        android.buildFeatures.dataBinding = true
+    }
+
+
+}
+
+secrets {
+    propertiesFileName = "local.properties"
 }
 
 dependencies {
+    implementation(project(Modules.commons))
+    implementation(project(Modules.network))
+    implementation(project(Modules.ui))
+    implementation(project(Modules.analytics))
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(AppDependencies.coreLibraries)
+    implementation(AppDependencies.hiltAndroid)
+
+    implementation(project.dependencies.platform(AppDependencies.firebasePlatform))
+    implementation(AppDependencies.firebaseAnalytics)
+    implementation(AppDependencies.fireBaseCrashlytics)
+
+    kapt(AppDependencies.hiltCompiler)
+    kapt(AppDependencies.roomCompiler)
+    implementation(AppDependencies.lifecycleLibraries)
+    implementation(AppDependencies.navigationLibraries)
+    implementation(AppDependencies.uiLibraries)
+
+    implementation(AppDependencies.retrofit)
+    implementation(AppDependencies.gson)
+    implementation(AppDependencies.cardView)
+    implementation(AppDependencies.roomLibraries)
+
+    testImplementation(AppDependencies.unitTestLibraries)
+    androidTestImplementation(AppDependencies.androidTestLibraries)
 }

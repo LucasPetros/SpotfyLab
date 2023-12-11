@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin -->
+    <dimen name="margin_dialog">48dp</dimen>
+    <dimen name="margin_extra_large">36dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_extra_huge">24dp</dimen>
+    <dimen name="margin_huge">16dp</dimen>
+    <dimen name="margin_normal">8dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_huge">16dp</dimen>
+
+    <!-- Icon -->
+    <dimen name="icon_small">24dp</dimen>
+    <dimen name="icon_normal">32dp</dimen>
+    <dimen name="icon_large">56dp</dimen>
+    <dimen name="icon_huge">64dp</dimen>
+
+    <!-- Corner -->
+    <dimen name="corner_huge">24dp</dimen>
+    <dimen name="corner_normal">12dp</dimen>
+    <dimen name="corner_small">4dp</dimen>
+
+    <!-- button Login -->
+    <dimen name="btn_login_width_size">133dp</dimen>
+
+    <!-- button Playlists -->
+    <dimen name="btn_playlist_width_size">185dp</dimen>
+
+    <!-- button Height default -->
+    <dimen name="btn_height_size">42dp</dimen>
+
+    <!-- image profile -->
+    <dimen name="img_profile_height_size">128dp</dimen>
+    <dimen name="img_profile_width_size">128dp</dimen>
+
+    <!-- text -->
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+
+
+</resources>

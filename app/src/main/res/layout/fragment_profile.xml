@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.lucas.petros.spotfylab.features.profile.presentation.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.profile.presentation.ProfileFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="@dimen/img_profile_width_size"
+            android:layout_height="@dimen/img_profile_height_size"
+            app:layout_constraintBottom_toTopOf="@+id/tvUsername"
+            app:layout_constraintEnd_toEndOf="parent"
+            loadUrlImage="@{vm.image}"
+            isCircle="@{true}"
+            imageDefault="@{@drawable/image_new_playlist}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_huge"
+            android:text="@{vm.username}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lnButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/lnButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_extra_large"
+            android:layout_marginTop="@dimen/margin_extra_huge"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonExit"
+                android:layout_width="@dimen/btn_login_width_size"
+                android:layout_height="@dimen/btn_height_size"
+                android:layout_margin="@dimen/margin_normal"
+                android:background="@drawable/button_background_radius"
+                android:text="@string/btn_exit"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorPrimaryVariant"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/vButtonExit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/lnButton"
+            app:layout_constraintEnd_toEndOf="@+id/lnButton"
+            app:layout_constraintStart_toStartOf="@+id/lnButton"
+            app:layout_constraintTop_toTopOf="@+id/lnButton" />
+
+        <com.lucas.petros.ui.UILoading
+            android:id="@+id/uil_login"
+            isVisible="@{vm.showLoading}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_huge"
+            app:description="@string/loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

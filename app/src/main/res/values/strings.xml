@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">SpotfyLab</string>
+
+    <!-- Login screen -->
+    <string name="btn_login">Entrar</string>
+    <string name="title_login">Entre com sua conta Spotify</string>
+    <string name="error_request_auth">Não foi possivel obter autorização</string>
+    <string name="conect_login">Conecte-se à Internet para realizar o login</string>
+
+    <!-- nav bottom home -->
+    <string name="artists_menu">Artistas</string>
+    <string name="playlists_menu">Playlists</string>
+    <string name="profile_menu">Perfil</string>
+
+    <!-- artists screen -->
+    <string name="top_artists">Top artistas</string>
+
+    <!-- playlists screen -->
+    <string name="my_playlists">Minhas playlists</string>
+    <string name="create_playlist">Criar playlist</string>
+    <string name="minha_playlist_1">Minha playlist #1</string>
+
+    <!-- profile screen -->
+    <string name="btn_exit">Sair</string>
+
+    <!-- commons -->
+    <string name="loading">Carregando...</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_playlist">Dê um nome a sua playlist</string>
+    <string name="create">Criar</string>
+    <string name="timeout_connection">Verifique sua conexão com a internet</string>
 </resources>
