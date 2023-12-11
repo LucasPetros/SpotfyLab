@@ -99,7 +99,6 @@ Antes de executar o projeto, é necessário configurar as credenciais da API da 
 
 2. Insira as seguintes linhas no arquivo, substituindo `SEU_CLIENT_ID` e `SEU_SECRET_ID` pelos valores obtidos no [Spotify for Developers Dashboard](https://developer.spotify.com/dashboard):
 
-properties
 CLIENT_ID= SEU_CLIENT_ID
 SECRET_ID= SEU_SECRET_ID
 
