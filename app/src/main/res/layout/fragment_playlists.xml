@@ -63,9 +63,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/materialButton2"
-                android:layout_width="@dimen/width_size_large"
-                android:layout_height="@dimen/height_size"
+                android:layout_width="@dimen/btn_playlist_width_size"
+                android:layout_height="@dimen/btn_height_size"
                 android:layout_margin="@dimen/margin_normal"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_title"
+                android:textAllCaps="false"
                 android:background="@drawable/button_background_radius"
                 android:text="@string/create_playlist"
                 android:textColor="?attr/colorPrimaryVariant" />

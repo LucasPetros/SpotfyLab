@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsViewModel" />
+            type="com.lucas.petros.spotfylab.features.artists.presentation.album_list.AlbumsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/margin_huge"
         android:paddingTop="@dimen/margin_normal"
-        tools:context=".features.artists.presentation.detail_list.AlbumsFragment">
+        tools:context=".features.artists.presentation.album_list.AlbumsFragment">
 
         <ImageButton
             android:id="@+id/ibBack"

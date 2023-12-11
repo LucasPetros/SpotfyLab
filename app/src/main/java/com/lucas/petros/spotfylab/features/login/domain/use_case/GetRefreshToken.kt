@@ -28,7 +28,6 @@ class GetRefreshToken @Inject constructor(
             } catch (e: IOException) {
                 emit(DataResource.Error(NetworkConstants.ERROR_NETWORK))
             }
-
         }
 
     private fun saveData(data: AccessToken) {

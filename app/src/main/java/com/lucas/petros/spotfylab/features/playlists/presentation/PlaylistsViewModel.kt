@@ -14,8 +14,8 @@ import com.lucas.petros.commons.utils.Prefs
 import com.lucas.petros.commons.utils.Prefs.Companion.KEY_ACCESS_TOKEN
 import com.lucas.petros.commons.utils.Prefs.Companion.KEY_USER_ID
 import com.lucas.petros.commons.utils.resultResource
-import com.lucas.petros.spotfylab.features.login.domain.model.UserProfile
-import com.lucas.petros.spotfylab.features.login.domain.use_case.GetUserProfile
+import com.lucas.petros.spotfylab.features.profile.domain.model.UserProfile
+import com.lucas.petros.spotfylab.features.profile.domain.use_case.GetUserProfile
 import com.lucas.petros.spotfylab.features.playlists.domain.model.Playlist
 import com.lucas.petros.spotfylab.features.playlists.domain.use_case.GetPlaylists
 import com.lucas.petros.spotfylab.features.playlists.domain.use_case.PostCreatePlaylist
@@ -34,16 +34,19 @@ class PlaylistsViewModel @Inject constructor(
     private val prefs: Prefs,
 ) : BaseViewModel() {
 
+    // PagingList - Section
     val pagingList = MutableLiveData<Flow<PagingData<Playlist>>>()
 
-    private val stateProfile = MutableLiveData<BaseState<UserProfile>>()
-    val imageProfile = stateProfile.map { it.data?.imageUrl.handleOpt() }
+    // UserProfile - Section
+    val stateUserProfile = MutableLiveData<BaseState<UserProfile>>()
+    val imageProfile = stateUserProfile.map { it.data?.imageUrl.handleOpt() }
 
+    // CreatePlaylist - Section
     val stateCreatePlaylist = MutableLiveData<BaseState<Boolean>>()
     val isLoadingCreate = stateCreatePlaylist.map { it.isLoading }
 
     init {
-        getUserProfile()
+        getProfile()
     }
 
     fun createPlaylist(namePlaylist: String) {
@@ -56,9 +59,9 @@ class PlaylistsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun getUserProfile() {
+    private fun getProfile() {
         getUserProfile.invoke(prefs.getDecrypted(KEY_ACCESS_TOKEN).handleOpt()).onEach { result ->
-            resultResource(result, stateProfile)
+            resultResource(result, stateUserProfile)
         }.launchIn(viewModelScope)
     }
 
@@ -70,12 +73,16 @@ class PlaylistsViewModel @Inject constructor(
         }
     }
 
+    //Loading - Section
+
     private val _showLoading = MutableLiveData(true)
     val showLoading: LiveData<Boolean> = _showLoading
 
     fun showLoading(isLoading: Boolean) {
         _showLoading.value = isLoading
     }
+
+    // OnClick Button - Section
 
     private val _onClickButton = MutableLiveData<Event<Boolean>>()
     val onClickButton: LiveData<Event<Boolean>> = _onClickButton

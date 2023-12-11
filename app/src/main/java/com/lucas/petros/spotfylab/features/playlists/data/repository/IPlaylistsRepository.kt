@@ -2,7 +2,7 @@ package com.lucas.petros.spotfylab.features.playlists.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.lucas.petros.spotfylab.data.data_source.PlaylistsDao
+import com.lucas.petros.spotfylab.features.playlists.data.local.PlaylistsDao
 import com.lucas.petros.spotfylab.features.playlists.data.PlaylistsDataSource
 import com.lucas.petros.spotfylab.features.playlists.data.remote.service.PlaylistsApi
 import com.lucas.petros.spotfylab.features.playlists.domain.mapper.toDto

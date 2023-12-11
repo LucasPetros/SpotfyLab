@@ -1,7 +1,6 @@
 package com.lucas.petros.commons.utils
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.lucas.petros.commons.extension.handleOpt
 import javax.inject.Inject
 
@@ -27,7 +26,6 @@ class Prefs @Inject constructor(
                     .putString(keyType + "IV", iv)
                     .putString(keyType, encryptedValue)
                     .apply()
-                Log.d("TESTE", "saveEncrypted: salvei vazio $value")
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -47,5 +45,11 @@ class Prefs @Inject constructor(
             e.printStackTrace()
         }
         return null
+    }
+
+    fun deleteDataByKey(keyDelete:String){
+        sharedPreferences.edit()
+            .remove(keyDelete)
+            .apply()
     }
 }

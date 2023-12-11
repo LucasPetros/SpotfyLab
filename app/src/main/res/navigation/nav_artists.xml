@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/artistsFragment"
-        android:name="com.lucas.petros.spotfylab.features.artists.presentation.list.ArtistsFragment"
+        android:name="com.lucas.petros.spotfylab.features.artists.presentation.artist_list.ArtistsFragment"
         android:label="nav_artists" >
         <action
             android:id="@+id/to_artistDetailFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
-        android:name="com.lucas.petros.spotfylab.features.artists.presentation.detail_list.AlbumsFragment"
+        android:name="com.lucas.petros.spotfylab.features.artists.presentation.album_list.AlbumsFragment"
         android:label="ArtistDetailFragment" >
         <argument
             android:name="id"

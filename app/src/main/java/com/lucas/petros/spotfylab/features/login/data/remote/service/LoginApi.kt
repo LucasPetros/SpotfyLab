@@ -6,11 +6,9 @@ import com.lucas.petros.spotfylab.BuildConfig.CLIENT_ID
 import com.lucas.petros.spotfylab.BuildConfig.SECRET_ID
 import com.lucas.petros.spotfylab.features.login.data.Constants.REDIRECT_URI
 import com.lucas.petros.spotfylab.features.login.data.remote.dto.AccessTokenDto
-import com.lucas.petros.spotfylab.features.login.data.remote.dto.UserProfileDto
 import okhttp3.Credentials
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Url
@@ -45,9 +43,4 @@ interface LoginApi {
         @Field("grant_type") grantType: String = KEY_TOKEN_REFRESH,
         @Field("client_id") clientId: String = CLIENT_ID
     ): AccessTokenDto
-
-    @GET("v1/me")
-    suspend fun getUserProfile(
-        @Header("Authorization") auth: String,
-    ): UserProfileDto
 }

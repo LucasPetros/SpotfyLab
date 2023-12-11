@@ -18,13 +18,14 @@
     <!-- playlists screen -->
     <string name="my_playlists">Minhas playlists</string>
     <string name="create_playlist">Criar playlist</string>
+    <string name="minha_playlist_1">Minha playlist #1</string>
+
+    <!-- profile screen -->
+    <string name="btn_exit">Sair</string>
 
     <!-- commons -->
     <string name="loading">Carregando...</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_playlist">Dê um nome a sua playlist</string>
     <string name="create">Criar</string>
-    <string name="minha_playlist_1">Minha playlist #1</string>
-
-
 </resources>

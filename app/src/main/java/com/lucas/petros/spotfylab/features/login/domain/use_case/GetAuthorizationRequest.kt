@@ -1,18 +1,14 @@
 package com.lucas.petros.spotfylab.features.login.domain.use_case
 
 import com.lucas.petros.commons.data.DataResource
-import com.lucas.petros.commons.extension.handleOpt
 import com.lucas.petros.commons.utils.Prefs
 import com.lucas.petros.commons.utils.Prefs.Companion.KEY_ACCESS_TOKEN
 import com.lucas.petros.commons.utils.Prefs.Companion.KEY_TOKEN_REFRESH
-import com.lucas.petros.commons.utils.Prefs.Companion.KEY_USER_ID
 import com.lucas.petros.network.NetworkConstants.ERROR_NETWORK
 import com.lucas.petros.network.NetworkConstants.UNEXPECTED_ERROR
 import com.lucas.petros.network.extension.fetchErrorMessage
 import com.lucas.petros.spotfylab.features.login.data.repository.LoginRepository
-import com.lucas.petros.spotfylab.features.login.domain.mapper.toEntity
 import com.lucas.petros.spotfylab.features.login.domain.model.AccessToken
-import com.lucas.petros.spotfylab.features.login.domain.model.UserProfile
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -43,6 +39,5 @@ class GetAuthorizationRequest @Inject constructor(
             prefs.saveEncrypted(KEY_ACCESS_TOKEN, data.accessToken)
             prefs.saveEncrypted(KEY_TOKEN_REFRESH, data.tokenRefresh)
         }
-
     }
 }

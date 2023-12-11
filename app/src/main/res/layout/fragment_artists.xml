@@ -7,14 +7,14 @@
 
         <variable
             name="vm"
-            type="com.lucas.petros.spotfylab.features.artists.presentation.list.ArtistsViewModel" />
+            type="com.lucas.petros.spotfylab.features.artists.presentation.artist_list.ArtistsViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.artists.presentation.list.ArtistsFragment">
+        tools:context=".features.artists.presentation.artist_list.ArtistsFragment">
 
         <TextView
             android:id="@+id/tvTitle"
