@@ -1,4 +1,4 @@
-# SpotfyLab - Clean Architecture + MVVM + Unit Tests + Analytics
+# SpotfyLab - Clean Architecture + MVVM + Room + Unit Tests + Analytics
 
 ## Descrição
 Este é um projeto Android que utiliza a API web da Spotify para criar uma aplicação centrada na reprodução de música. A implementação é baseada em arquitetura limpa (Clean Architecture) com o padrão MVVM (Model-View-ViewModel), proporcionando uma estrutura organizada e escalável.
