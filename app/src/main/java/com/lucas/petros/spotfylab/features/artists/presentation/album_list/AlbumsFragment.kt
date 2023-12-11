@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AlbumsFragment :
-    BaseFragmentVDB<FragmentAlbumsBinding>(R.layout.fragment_albums) {
+    BaseFragmentVDB<FragmentAlbumsBinding>(R.layout.fragment_albums,"AlbumsFragment") {
 
     private val vm: AlbumsViewModel by viewModels()
     private var albumsAdapter: AlbumsAdapter? = null

@@ -12,6 +12,7 @@ object AppDependencies {
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
     private const val hiltAndroidClassPath =
         "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltAndroidGradle}"
+    private const val pluginSecretKeyClassPath = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1"
 
     // Std lib
     private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
@@ -55,6 +56,13 @@ object AppDependencies {
     private const val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     private const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+
+    // Firebase
+    const val firebasePlatform = "com.google.firebase:firebase-bom:${Versions.firebasePlatform}"
+    const val firebaseAnalytics =
+        "com.google.firebase:firebase-analytics-ktx:${Versions.firebaseAnalytics}"
+    const val firebaseCommon = "com.google.firebase:firebase-common-ktx:${Versions.firebaseCommon}"
+    const val fireBaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
 
 
     // Network
@@ -104,6 +112,7 @@ object AppDependencies {
         add(gradlePluginClassPath)
         add(navigationSafeArgsClassPath)
         add(hiltAndroidClassPath)
+        add(pluginSecretKeyClassPath)
     }
 
 

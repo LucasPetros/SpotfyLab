@@ -3,6 +3,7 @@ object Versions {
     // App level
     const val gradle = "7.4.1"
     const val kotlin = "1.8.0"
+    const val googleServices = "4.3.10"
 
     // Core
     const val coreKtx = "1.10.1"
@@ -11,6 +12,11 @@ object Versions {
     // Glide
     const val glide = "5.0.0-rc01"
     const val webview = "1.6.0"
+
+    // Firebase
+    const val firebasePlatform = "30.1.0"
+    const val firebaseAnalytics = "21.0.0"
+    const val firebaseCommon = "20.1.1"
 
     // Hilt
     const val hilt = "2.48"

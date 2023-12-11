@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fragment_playlists),
+class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fragment_playlists,"PlaylistsFragment"),
     CreatePlaylistDialog.DialogListener {
     private val vm: PlaylistsViewModel by viewModels()
     private var playlistsAdapter: PlaylistsAdapter? = null
