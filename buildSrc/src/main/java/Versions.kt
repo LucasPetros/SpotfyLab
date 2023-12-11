@@ -45,4 +45,11 @@ object Versions {
     const val coreTesting = "2.1.0"
     const val coroutinesTesting = "1.6.2"
     const val turbineVersion = "0.12.3"
+
+    // Instrumented test
+    const val extJunit = "1.1.3"
+    const val espresso = "3.4.0"
+    const val runner = "1.4.0"
+    const val navigationTesting = "2.5.2"
+    const val fragmentTesting = "1.5.3"
 }

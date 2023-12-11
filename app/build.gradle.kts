@@ -75,5 +75,5 @@ dependencies {
     implementation(AppDependencies.roomLibraries)
 
     testImplementation(AppDependencies.unitTestLibraries)
-
+    androidTestImplementation(AppDependencies.androidTestLibraries)
 }

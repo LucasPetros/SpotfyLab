@@ -87,6 +87,18 @@ object AppDependencies {
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTesting}"
     private const val turbine = "app.cash.turbine:turbine:${Versions.turbineVersion}"
 
+    //Instrumented test
+    private const val instrumentedJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
+    private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private const val espressoContrib =
+        "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    private const val runner = "androidx.test:runner:${Versions.runner}"
+    private const val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
+    private const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigationTesting}"
+
+    // Debug Implementation For Instrumented Test
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+
     val buildClassPath = arrayListOf<String>().apply {
         add(buildToolsClassPath)
         add(gradlePluginClassPath)
@@ -144,6 +156,17 @@ object AppDependencies {
         add(coreTesting)
         add(coroutinesTesting)
         add(turbine)
+    }
+
+    val androidTestLibraries = arrayListOf<String>().apply {
+        add(instrumentedJUnit)
+        add(espressoCore)
+        add(espressoContrib)
+        add(runner)
+        add(coroutinesTesting)
+        add(mockkAndroid)
+        add(navigationTesting)
+        add(fragmentTesting)
     }
 }
 
