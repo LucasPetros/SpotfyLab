@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
+import com.lucas.petros.analytics.IAnalyticsLog
+import com.lucas.petros.analytics.firebase.FirebaseAnalyticsLog
 import com.lucas.petros.commons.utils.CryptoManager
 import com.lucas.petros.commons.utils.CryptoUtils
 import com.lucas.petros.commons.utils.Prefs
@@ -40,6 +42,12 @@ object AppModule {
     @Singleton
     fun provideContext(@ApplicationContext app: Application): Context {
         return app
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnalytics(): IAnalyticsLog {
+        return FirebaseAnalyticsLog()
     }
 
     @Provides

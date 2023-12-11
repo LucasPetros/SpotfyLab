@@ -2,9 +2,11 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("com.google.gms.google-services")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.firebase.crashlytics")
 
 }
 
@@ -60,9 +62,15 @@ dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.network))
     implementation(project(Modules.ui))
+    implementation(project(Modules.analytics))
 
     implementation(AppDependencies.coreLibraries)
     implementation(AppDependencies.hiltAndroid)
+
+    implementation(project.dependencies.platform(AppDependencies.firebasePlatform))
+    implementation(AppDependencies.firebaseAnalytics)
+    implementation(AppDependencies.fireBaseCrashlytics)
+
     kapt(AppDependencies.hiltCompiler)
     kapt(AppDependencies.roomCompiler)
     implementation(AppDependencies.lifecycleLibraries)
@@ -75,5 +83,5 @@ dependencies {
     implementation(AppDependencies.roomLibraries)
 
     testImplementation(AppDependencies.unitTestLibraries)
-
+    androidTestImplementation(AppDependencies.androidTestLibraries)
 }

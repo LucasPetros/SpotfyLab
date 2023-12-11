@@ -17,7 +17,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fragment_playlists),
+class PlaylistsFragment :
+    BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fragment_playlists, "PlaylistsFragment"),
     CreatePlaylistDialog.DialogListener {
     private val vm: PlaylistsViewModel by viewModels()
     private var playlistsAdapter: PlaylistsAdapter? = null
@@ -72,17 +73,20 @@ class PlaylistsFragment : BaseFragmentVDB<FragmentPlaylistsBinding>(R.layout.fra
 
     private fun observerCreatePlaylist() {
         vm.stateCreatePlaylist.observe(viewLifecycleOwner) { state ->
-                if (state.data.handleOpt()) {
-                    vm.getPlaylists()
-                }else if(state.error.contains(ERROR_NETWORK)) {
-                    Toast.makeText(requireContext(), "Verifique sua conexão com a internet", Toast.LENGTH_SHORT).show()
-                }
+            if (state.data.handleOpt()) {
+                vm.getPlaylists()
+            } else if (state.error.contains(ERROR_NETWORK)) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.timeout_connection), Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
     private fun observerLoadingCreatePlaylist() {
-        vm.isLoadingCreate.observe(viewLifecycleOwner) { isloading ->
-            vm.showLoading(isloading)
+        vm.isLoadingCreate.observe(viewLifecycleOwner) { isLoading ->
+            vm.showLoading(isLoading)
         }
     }
 

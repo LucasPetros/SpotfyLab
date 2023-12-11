@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SpotfyLab"
 
-include("app", "commons", "network", "ui")
+include("app", "commons", "network", "ui","analytics")
 

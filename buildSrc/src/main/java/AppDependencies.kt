@@ -12,6 +12,7 @@ object AppDependencies {
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
     private const val hiltAndroidClassPath =
         "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltAndroidGradle}"
+    private const val pluginSecretKeyClassPath = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1"
 
     // Std lib
     private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
@@ -56,6 +57,13 @@ object AppDependencies {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     private const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
+    // Firebase
+    const val firebasePlatform = "com.google.firebase:firebase-bom:${Versions.firebasePlatform}"
+    const val firebaseAnalytics =
+        "com.google.firebase:firebase-analytics-ktx:${Versions.firebaseAnalytics}"
+    const val firebaseCommon = "com.google.firebase:firebase-common-ktx:${Versions.firebaseCommon}"
+    const val fireBaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+
 
     // Network
     const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
@@ -87,11 +95,24 @@ object AppDependencies {
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTesting}"
     private const val turbine = "app.cash.turbine:turbine:${Versions.turbineVersion}"
 
+    //Instrumented test
+    private const val instrumentedJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
+    private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private const val espressoContrib =
+        "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    private const val runner = "androidx.test:runner:${Versions.runner}"
+    private const val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
+    private const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigationTesting}"
+
+    // Debug Implementation For Instrumented Test
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+
     val buildClassPath = arrayListOf<String>().apply {
         add(buildToolsClassPath)
         add(gradlePluginClassPath)
         add(navigationSafeArgsClassPath)
         add(hiltAndroidClassPath)
+        add(pluginSecretKeyClassPath)
     }
 
 
@@ -144,6 +165,17 @@ object AppDependencies {
         add(coreTesting)
         add(coroutinesTesting)
         add(turbine)
+    }
+
+    val androidTestLibraries = arrayListOf<String>().apply {
+        add(instrumentedJUnit)
+        add(espressoCore)
+        add(espressoContrib)
+        add(runner)
+        add(coroutinesTesting)
+        add(mockkAndroid)
+        add(navigationTesting)
+        add(fragmentTesting)
     }
 }
 

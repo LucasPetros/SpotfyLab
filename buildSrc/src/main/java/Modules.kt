@@ -3,4 +3,5 @@ object Modules {
     const val network = ":network"
     const val ui = ":ui"
     const val commons = ":commons"
+    const val analytics = ":analytics"
 }

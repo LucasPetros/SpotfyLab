@@ -9,7 +9,7 @@ import com.lucas.petros.spotfylab.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragmentVDB<FragmentProfileBinding>(R.layout.fragment_profile) {
+class ProfileFragment : BaseFragmentVDB<FragmentProfileBinding>(R.layout.fragment_profile,"ProfileFragment") {
 
     private val vm: ProfileViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

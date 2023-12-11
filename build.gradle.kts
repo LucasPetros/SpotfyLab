@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+    id("com.android.library") version "7.4.1" apply false
+    id("com.google.gms.google-services") version "4.3.15" apply false
 }
 buildscript {
     repositories {
@@ -9,8 +11,7 @@ buildscript {
     }
     dependencies {
         addClassPath(AppDependencies.buildClassPath)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
-        classpath ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.9")
     }
 }
 

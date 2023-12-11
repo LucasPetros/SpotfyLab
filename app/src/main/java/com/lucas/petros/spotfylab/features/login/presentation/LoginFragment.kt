@@ -17,7 +17,7 @@ import com.lucas.petros.spotfylab.features.login.presentation.auth.WebViewCallba
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragmentVDB<FragmentLoginBinding>(R.layout.fragment_login), WebViewCallback {
+class LoginFragment : BaseFragmentVDB<FragmentLoginBinding>(R.layout.fragment_login,"LoginFragment"), WebViewCallback {
     private val vm: LoginViewModel by viewModels()
     private lateinit var spotifyAuthManager: SpotifyAuthManager
 

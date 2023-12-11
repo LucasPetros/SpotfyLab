@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030333025480",
+    "project_id": "spotfylab",
+    "storage_bucket": "spotfylab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030333025480:android:bf45542e4ad243d837e9fd",
+        "android_client_info": {
+          "package_name": "com.lucas.petros.spotfylab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPyZmLMNZMsb-5dZeWeda5Jd4_RcO_Kvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

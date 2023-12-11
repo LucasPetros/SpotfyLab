@@ -1,6 +1,5 @@
 package com.lucas.petros.spotfylab.features.login.presentation.auth
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.view.View
