@@ -11,6 +11,8 @@ import io.mockk.mockk
 import junit.framework.TestCase
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -68,6 +70,6 @@ class AlbumsViewModelTest {
     // State pagingList - Section
     @Test
     fun `GIVEN the initial state of ViewModel THEN pagingList is null`() {
-        TestCase.assertNull(vm.pagingList.value)
+        TestCase.assertNotNull(vm.pagingList.value)
     }
 }

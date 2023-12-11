@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    compileSdk = AppConfig.compileSdk
 
+    compileSdk = AppConfig.compileSdk
     defaultConfig {
         minSdk = AppConfig.minSdk
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
@@ -31,13 +31,8 @@ android {
 }
 
 dependencies {
-    implementation(AppDependencies.coreLibraries)
-
     implementation(project.dependencies.platform(AppDependencies.firebasePlatform))
     implementation(AppDependencies.firebaseAnalytics)
     implementation(AppDependencies.firebaseCommon)
 
-    testImplementation(AppDependencies.unitTestLibraries)
-
-    androidTestImplementation(AppDependencies.androidTestLibraries)
 }
